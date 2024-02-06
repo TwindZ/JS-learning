@@ -1,22 +1,90 @@
+body{
+	text-align: center;
+	background: center url(scicity.jpeg) fixed;
+	color: white;
+}
 h1, a{
 	color:chartreuse;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 h2{
 	color: red;
+	border-style: solid;
+	border-color: blueviolet;
+	border-width: 10px;
+	border-radius: 50px;
+	background-color: gray;
+	border-radius: 10px 100px 10px 100px;
+	box-shadow: 10px 10px 2px rgba(255, 255, 255, 0.5);
+	
 }
 .def{
 	color: yellow;
 	font-style: oblique;
+	background: linear-gradient(to right,#000046, #1CB5E0);
 }
 p{
 	color: chocolate;
 	font-size: 18px;
+	
+	
+}
+h2 + p{
+	background-color: brown;
+}
+ul{
+	list-style-position: 200px;
+	display: flex;
+	margin: auto;
+	justify-content: space-between;
+	align-content: center;
+}
+li{
+	background-color: aqua;
+	color: brown;
+	padding: 20px;
 }
 .abc{
 	color: blue;
 	font-size: 2em;
+	width: 500px;
+	height: 100px;
+	margin: auto;
 }
+
 #ancre1{
 	color: green;
+}
+.bouton:hover{
+	background-color: burlywood;
+	box-shadow: 10px 0px 0px rgba(31, 50, 192, 0.5);
+	border-radius: 20px;
+	padding: 10px;
+	
+}
+
+.bouton{
+	background-color: rgb(10, 19, 74);
+	box-shadow: 10px 0px 0px rgba(0, 0, 0, 0.5);
+	border-radius: 20px;
+	padding: 10px;
+}
+.bouton:active{
+	background-color: rgb(10, 19, 74);
+	box-shadow: 10px 0px 0px rgba(0, 0, 0, 0.5);
+	border-radius: 20px;
+	padding: 100px;
+}
+.bouton:focus{
+	background-color: rgb(24, 155, 172);
+	box-shadow: 10px 0px 0px rgba(0, 0, 0, 0.5);
+	padding: 10px;
+	border-radius: 0px;
+	
+}
+#block1{
+	background-color: wheat;
+	color: blue;
+	border-radius: 100px;
+	box-shadow: 20px 20px 30px rgba(255, 255, 255, 0.5);
 }
