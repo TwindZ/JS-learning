@@ -5,9 +5,18 @@ h1, a{
 h2{
 	color: red;
 }
+.def{
+	color: yellow;
+	font-style: oblique;
+}
 p{
 	color: chocolate;
+	font-size: 18px;
 }
 .abc{
 	color: blue;
+	font-size: 2em;
+}
+#ancre1{
+	color: green;
 }
