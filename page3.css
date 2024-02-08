@@ -1,0 +1,17 @@
+body{
+	text-align: center;
+	margin: auto;
+}
+
+main{
+	width: 500px;
+	margin: auto;
+	border: 7px solid;
+	border-radius: 15px;
+	background-color: bisque;
+	padding: 20px 0 20px 0;
+}
+
+#answer{
+	width: 400px;
+}

@@ -6,10 +6,40 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="script.js"></script>
-		<script src="config.js"></script>
+		<link rel="stylesheet" href="page3.css">
+		<script src="script.js" defer></script>
+		<script src="config.js" defer></script>
 	</head>
 	<body>
-
+		<header>
+			<h1>AzerType</h1>
+		</header>
+	
+		<main>
+			<div class="mode">
+				<span>Modes</span><br>
+				<input type="radio" name="optionSource" id="mots" value="1" checked>
+				<label for="mots">Mots</label>
+				<input type="radio" name="optionSource" id="phrases" value="2">
+				<label for="phrases">Phrases</label>
+			</div>
+			<div>
+				<h2>À retarper</h2>
+				<p id="toWrite"> text a retaper</p>
+			</div>
+			<div>
+				<h2>Réponse</h2>
+				<label for="answer"></label>
+				<input id="answer" type="text" name="answer">
+				<input id="btSubmit" type="submit" value="GO">
+			</div>
+			<div>
+				<p>Score : <span id="scoreCount">[le score]</span></p>
+			</div>
+		</main>
+	
+		<footer>
+			@Copyright : TwindZ Inc.
+		</footer>
 	</body>
 </html>

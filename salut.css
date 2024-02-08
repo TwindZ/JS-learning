@@ -209,3 +209,7 @@ textarea{
         font-size: 1.2em;
     }
 }
+
+#to_write span{
+	color: darkgreen;
+}
