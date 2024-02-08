@@ -3,10 +3,17 @@ body{
 	background: center url(scicity.jpeg) fixed;
 	color: white;
 }
-h1, a{
+
+h1{
 	color:chartreuse;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	position: fixed;
 }
+
+a{
+	color: crimson;
+}
+
 h2{
 	color: red;
 	border-style: solid;
@@ -18,20 +25,22 @@ h2{
 	box-shadow: 10px 10px 2px rgba(255, 255, 255, 0.5);
 	
 }
+
 .def{
 	color: yellow;
 	font-style: oblique;
 	background: linear-gradient(to right,#000046, #1CB5E0);
 }
+
 p{
 	color: chocolate;
 	font-size: 18px;
-	
-	
 }
+
 h2 + p{
 	background-color: brown;
 }
+
 ul{
 	list-style-position: 200px;
 	display: flex;
@@ -39,11 +48,13 @@ ul{
 	justify-content: space-between;
 	align-content: center;
 }
+
 li{
 	background-color: aqua;
 	color: brown;
 	padding: 20px;
 }
+
 .abc{
 	color: blue;
 	font-size: 2em;
@@ -55,6 +66,7 @@ li{
 #ancre1{
 	color: green;
 }
+
 .bouton:hover{
 	background-color: burlywood;
 	box-shadow: 10px 0px 0px rgba(31, 50, 192, 0.5);
@@ -69,12 +81,14 @@ li{
 	border-radius: 20px;
 	padding: 10px;
 }
+
 .bouton:active{
 	background-color: rgb(10, 19, 74);
 	box-shadow: 10px 0px 0px rgba(0, 0, 0, 0.5);
 	border-radius: 20px;
 	padding: 100px;
 }
+
 .bouton:focus{
 	background-color: rgb(24, 155, 172);
 	box-shadow: 10px 0px 0px rgba(0, 0, 0, 0.5);
@@ -82,9 +96,116 @@ li{
 	border-radius: 0px;
 	
 }
+
 #block1{
 	background-color: wheat;
 	color: blue;
 	border-radius: 100px;
 	box-shadow: 20px 20px 30px rgba(255, 255, 255, 0.5);
+}
+
+.conteneur{
+	color: aquamarine;
+	display: grid;
+	grid-template-columns: 1fr 2fr 3fr;
+	grid-template-rows: 200px 300px 400px 200px;
+	gap: 20;
+}
+
+.box{
+	background-color: black;
+	border: solid 4px;
+	border-radius: 20px;
+	box-shadow: 10px 10px rgba(254, 253, 253, 0.35);
+}
+
+.box1{
+	background-color: black;
+	border: solid 4px;
+	border-radius: 20px;
+	box-shadow: 10px 10px rgba(254, 253, 253, 0.35);
+	grid-column: 1 / 4;
+}
+
+.box2{
+	background-color: black;
+	border: solid 4px;
+	border-radius: 20px;
+	box-shadow: 10px 10px rgba(254, 253, 253, 0.35);
+}
+
+.box3{
+	background-color: black;
+	border: solid 4px;
+	border-radius: 20px;
+	box-shadow: 10px 10px rgba(254, 253, 253, 0.35);
+	grid-column: 1 / 4;
+}
+
+.box4{
+	background-color: black;
+	border: solid 4px;
+	border-radius: 20px;
+	box-shadow: 10px 10px rgba(254, 253, 253, 0.35);
+	grid-column: 1 / 2;
+	grid-row: 2 / 4;
+}
+
+.box5{
+	background-color: black;
+	border: solid 4px;
+	border-radius: 20px;
+	box-shadow: 10px 10px rgba(254, 253, 253, 0.35);
+	grid-column: 2 / 3;
+	grid-row: 2 / 4;
+}
+
+table{
+	border-collapse: collapse;
+	margin: auto;
+}
+
+td{
+	border: 0.2em white solid;
+	background-color: #9edff1;
+	color: burlywood;
+	padding: 10px;
+
+}
+
+th{
+	font-weight: bolder;
+	background-color: #40bee1;
+	color: burlywood;
+	border-radius: 5px 5px 0 0;
+	padding: 5px;
+}
+
+caption{
+	font-weight: bolder;
+	background-color: #000000;
+	color: burlywood;
+	border-radius: 5px 5px 0 0;
+}
+
+#radio{
+	color: yellow;
+}
+
+fieldset{
+	background-color: rgb(195, 116, 116);
+	width: 500px;
+	margin: auto;
+	color: rgb(57, 255, 100);
+}
+
+textarea{
+	resize: none;
+}
+@media screen and (max-width: 1024px) {
+    p {
+        color: red;
+        background-color: black;
+        font-size: 1.2em;
+    }
 }

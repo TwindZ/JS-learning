@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Les grand plaisir de la poutine</title>
 		<link rel="stylesheet" href="../salut.css">
-
+		<link rel="icon" href="../duck_mini.jpeg" type="jpeg">
     </head>
     <body>
 		<h1>PAGE 2</h1>
@@ -12,15 +12,61 @@
 		<p>coucou
 			esce que ca fonction<br>
 			allo ca marche tu
+		p
 		<p>
 			Photographe depuis plus de 5 ans, je réalise des reportages aux photos dynamiques et pertinentes pour vos projets de communication.<br>Créativité, qualité, et sérénité pour vous !<br>Je gère tout, depuis la direction artistique, la réalisation du reportage, jusqu’à la livraison de vos photos retouchées, prêtes à l’emploi.
 		</p>
 		<h2>deuxieme</h2>
 		<p>salut tout le monde<br>ca fonctionne !!</p>
 		<p class="def"><strong>Encore</strong> du text juste pour <mark>tester </mark>le deuximene <br> paragraphe avec le <em>deuxieme</em> sous titre</p>
-		<a href="../index.html">back</a>
-		<a target="_blank" href="https://www.google.com/">GOOGLE</a>
+		<a class=bouton href="../index.html">back</a>
+		<a class=bouton target="_blank" href="https://www.google.com/">GOOGLE</a>
 		<p id="ancre2"><strong>Encore</strong> du text juste pour <mark>tester </mark>le deuximene <br> paragraphe avec le <em>deuxieme</em> sous titre</p>
-		<a href="../duck.jpeg"><img src="../duck_mini.jpeg" alt="canard jaune qui fait wak wak" title="coin coin coin dans le coin"></a>
-    </body>
+		<a target=_blank href="../duck.jpeg"><img src="../duck_mini.jpeg" alt="canard jaune qui fait wak wak" title="coin coin coin dans le coin"></a>
+		<table>
+			<caption>Folles incapables de se controler</caption>
+			<tr>
+				<th>NOM</th>
+				<th>AGE</th>
+				<th>PAYS</th>
+			</tr>
+			<tr>
+				<td>Carmen</td>
+				<td>33 ans</td>
+				<td>Espagne</td>
+			</tr>
+			<tr>
+				<td>Michelle</td>
+				<td>26 ans</td>
+				<td>États-Unis</td>
+			</tr>
+		</table>
+		<form action="">
+			<fieldset>
+				<legend>Truc de formulaire</legend>
+				<label>Nom</label> : <input type="radio" name="Nom" value="*" placeholder="-">
+				<label for Prénom>Prénom</label> : <input type="text" name="prenom" id="prenom"><br>
+				<label for="description">Description</label><br>
+				<textarea name="description" id="description" cols="30" rows="10" autofocus></textarea>
+				<p id="radio">test de bouton radio<br>
+				<label for="1">1</label> : <input checked type="radio" name="choix" id="1" value="1"><br>
+				<label for="2">2</label> : <input type="radio" name="choix" id="2" value="2"><br>
+				<label for="3">3</label> : <input type="radio" name="choix" id="3" value="3"><br>
+				<label for="4">4</label> : <input type="radio" name="choix" id="4" value="4"><br>
+				<label for="5">5</label> : <input type="radio" name="choix" id="5" value="5"><br>
+				</p>
+				<p>
+					<label for=""></label>
+					<select name="animal" id="animal">
+						<option value="chat">chat</option>
+						<option value="poisson">poisson</option>
+						<option value="chien">chien</option>
+						<option value="oiseau">oiseau</option>
+					</select>
+				</p>
+				<input type="submit" value="OK">
+				<input type="reset" value="BOUM">
+			</fieldset>
+		</form>
+	</body>
 </html>

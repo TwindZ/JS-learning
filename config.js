@@ -1,0 +1,1 @@
+const word_list = ["hahaha", "patate", "allo", "hello", "bonjour", "salut"]
