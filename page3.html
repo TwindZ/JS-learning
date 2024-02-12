@@ -7,8 +7,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="page3.css">
-		<script src="script.js" defer></script>
-		<script src="config.js" defer></script>
+		<script src="script/main.js" defer></script>
+		<script src="script/config.js" defer></script>
+		<script src="script/script.js" defer></script>
 	</head>
 	<body>
 		<header>
@@ -17,27 +18,26 @@
 	
 		<main>
 			<div class="mode">
-				<span>Modes</span><br>
-				<input type="radio" name="optionSource" id="mots" value="1" checked>
+				<span>Select a mode and press START</span><br>
+				<input id="mots" type="radio" name="optionSource" value="1" checked>
 				<label for="mots">Mots</label>
-				<input type="radio" name="optionSource" id="phrases" value="2">
-				<label for="phrases">Phrases</label>
+				<input id="phrases" type="radio" name="optionSource" value="2">
+				<label for="phrases">Phrases</label><br>
+				<input id="optionSubmit" type="submit" name="optionSubmit" value="START">
 			</div>
 			<div>
 				<h2>À retarper</h2>
-				<p id="toWrite"> text a retaper</p>
+				<p id="toWrite"></p>
 			</div>
-			<div>
+			<div id="answerField">
 				<h2>Réponse</h2>
-				<label for="answer"></label>
 				<input id="answer" type="text" name="answer">
-				<input id="btSubmit" type="submit" value="GO">
+				<input id="btSubmit" type="submit" name="answer" value="GO" disabled="true">
 			</div>
 			<div>
-				<p>Score : <span id="scoreCount">[le score]</span></p>
+				<p>Score : <span id="scoreCount">0/0</span></p>
 			</div>
 		</main>
-	
 		<footer>
 			@Copyright : TwindZ Inc.
 		</footer>

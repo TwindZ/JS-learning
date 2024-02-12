@@ -13,5 +13,9 @@ main{
 }
 
 #answer{
-	width: 400px;
+	width: 350px;
+}
+
+#toWrite{
+	height: 1em;
 }
