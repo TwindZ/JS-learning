@@ -18,4 +18,11 @@ main{
 
 #toWrite{
 	height: 1em;
+	font-size: 30px;
+	background-color: white;
+	margin: auto;
+	width: 450px;
+	border: solid 5px;
+	border-radius: 30px;
+	padding: 5px 0 10px 0;
 }

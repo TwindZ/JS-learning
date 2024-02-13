@@ -62,7 +62,7 @@ bt_submit.addEventListener("click", () =>{
 	answer.value = ""
 	to_write.textContent = to_write_list[level]
 	if(level === sentence_list.length){
-		to_write.textContent = "Jeu terminer! Score :" + (succescount / level * 100) + "%"
+		to_write.textContent = "Jeu terminé! Score :" + Math.floor(succescount / level * 100) + "%"
 		level = 0
 		succescount = 0
 		bt_submit.disabled = true

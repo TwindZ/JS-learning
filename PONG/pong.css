@@ -1,0 +1,57 @@
+#board{
+	position: relative;
+	background-color: rgb(54, 54, 100);
+	width: 1000px;
+	height: 1000px;
+	display: flex;
+	margin: auto;
+	border: 10px solid;
+}
+
+#ball{
+	background-color: rgb(28, 124, 41);
+	width: 40px;
+	height: 40px;
+	border-radius: 25px;
+	position: absolute;
+	/* top: 400px; */
+	/* left: 450px; */
+	box-shadow: black 5px 5px;
+}
+
+
+#paddleLeft{
+background-color: rgb(191, 0, 0);
+	width: 25px;
+	height: 300px;
+	border-radius: 25px;
+	position: absolute;
+	/* top: 350px; */
+	left: 25px;
+	box-shadow: black 5px 5px;
+
+}
+
+#paddleRight{
+	background-color: rgb(191, 191, 0);
+	width: 25px;
+	height: 300px;
+	border-radius: 25px;
+	position: absolute;
+	/* top: 350px; */
+	left: 950px;
+	box-shadow: black 5px 5px;
+
+}
+
+#grid{
+	position: absolute;
+	display: grid;
+	grid-template-columns: 250px 250px 250px 250px;
+	grid-template-rows: 250px 250px 250px 250px;
+	gap: 20;
+}
+
+#griditem{
+	border: solid 1px
+}
