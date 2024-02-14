@@ -1,3 +1,7 @@
+body{
+	background-color: rgb(107, 107, 107);
+}
+
 #board{
 	position: relative;
 	background-color: rgb(54, 54, 100);
@@ -6,6 +10,7 @@
 	display: flex;
 	margin: auto;
 	border: 10px solid;
+	box-shadow: rgba(0, 0, 0, 0.504) 20px 20px 30px;
 }
 
 #ball{
@@ -54,4 +59,19 @@ background-color: rgb(191, 0, 0);
 
 #griditem{
 	border: solid 1px
+}
+
+#gameover{
+	background-color: white;
+	width: 400px;
+	border-radius: 50px;
+	position: absolute;
+	left: 300px;
+	top: 475px;
+	font-size: 40px;
+	text-align: center; /* Aligner le texte au centre */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: none;
 }
