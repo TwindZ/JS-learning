@@ -1,20 +1,22 @@
 body{
 	background-color: rgb(107, 107, 107);
+	background: center url("sunset-mountain.jpg");
 }
 
 #board{
 	position: relative;
-	background-color: rgb(54, 54, 100);
+	background-color: rgba(29, 29, 204, 0.906);
 	width: 1000px;
 	height: 1000px;
 	display: flex;
 	margin: auto;
 	border: 10px solid;
 	box-shadow: rgba(0, 0, 0, 0.504) 20px 20px 30px;
+	align-items: center;
 }
 
 #ball{
-	background-color: rgb(28, 124, 41);
+	background-color: rgb(211, 167, 4);
 	width: 40px;
 	height: 40px;
 	border-radius: 25px;
@@ -26,7 +28,7 @@ body{
 
 
 #paddleLeft{
-background-color: rgb(191, 0, 0);
+background-color: rgb(234, 33, 197);
 	width: 25px;
 	height: 300px;
 	border-radius: 25px;
@@ -38,7 +40,7 @@ background-color: rgb(191, 0, 0);
 }
 
 #paddleRight{
-	background-color: rgb(191, 191, 0);
+	background-color: rgb(234, 33, 197);
 	width: 25px;
 	height: 300px;
 	border-radius: 25px;
@@ -61,17 +63,61 @@ background-color: rgb(191, 0, 0);
 	border: solid 1px
 }
 
-#gameover{
+/* #gameover{
 	background-color: white;
-	width: 400px;
+	width: 200px;
+	height: 400px;
 	border-radius: 50px;
 	position: absolute;
 	left: 300px;
 	top: 475px;
 	font-size: 40px;
-	text-align: center; /* Aligner le texte au centre */
+	text-align: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 20px;
 	display: none;
+} */
+
+/* #overButton{
+	position: absolute;
+	justify-content: center;
+	align-items: center;
+	padding :5px;
+	font-size: 30px;
+} */
+
+#gameover {
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	border-radius: 10px;
+	width: 300px;
+	height: 175px;
+	/* position: absolute;
+	left: 250px;
+	top: 450px; */
+	margin: auto;
+	display: none;
+}
+
+#buttons button {
+	margin: 10px;
+	padding: 5px 10px;
+	border: none;
+	background-color: #333;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#buttons button:hover {
+	margin: 10px;
+	padding: 5px 10px;
+	border: none;
+	background-color: rgb(234, 33, 197);
+	color: black;
+	border-radius: 5px;
+	cursor: pointer;
 }

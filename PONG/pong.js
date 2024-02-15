@@ -1,11 +1,19 @@
 let paddleSpeed = 5
 let ballBaseSpeed = 7
-let ballSpeedX = ballBaseSpeed
-let ballSpeedY = 1
+let paddleStartPosition = 350
+let ballSpeedY = Math.floor((Math.random() * 10) + 1)
+let ballSpeedX = 10 - ballSpeedY + 1
 let paddleLeftTag = document.getElementById("paddleLeft")
 let paddleRightTag = document.getElementById("paddleRight")
 let ballTag = document.getElementById("ball")
 let gameoverTag = document.getElementById("gameover")
+
+let gameStat = {
+	p1Name: "",
+	p2Name: "",
+	scorep1: 0,
+	scorep2: 0
+}
 
 let ball = {
 	posX : 500,
@@ -34,6 +42,24 @@ let paddleRight = {
 	dir2 : false,
 	hitBoxStart : 0,
 	hitBoxEnd : 0,
+}
+function gameOver(){
+	gameoverTag.style.display = "block"
+}
+
+function faceOff(){
+	let randnb = Math.random()
+	if(randnb < 0.5)
+		ball.dirX = 1
+	else
+		ball.dirX = -1
+	randnb = Math.random()
+	if(randnb < 0.5)
+		ball.dirY = 1
+	else
+		ball.dirY = -1
+	paddleLeft.pos = paddleStartPosition
+	paddleRight.pos = paddleStartPosition
 }
 
 function hitBoxesUpdate(){
@@ -77,26 +103,27 @@ function moveBall(){
 	if(ball.dirY < 0){
 		ball.posY -= ballSpeedY
 	}
-	if(ball.hitBoxLeft >= 900/* width + posx de paddle right*/ && ball.posY + (ball.diameter / 2) >= paddleRight.hitBoxStart && ball.posY <= paddleRight.hitBoxEnd){
+	if(ball.hitBoxLeft >= 900 && ball.hitBoxLeft <= 910/* width + posx de paddle right*/ && ball.posY + (ball.diameter / 2) >= paddleRight.hitBoxStart && ball.posY <= paddleRight.hitBoxEnd){
 		ball.dirX = -1
 		ballSpeedY = Math.floor((Math.random() * 10) + 1)
+		ballSpeedX = 10 - ballSpeedY + 2
 	}
 	if(ball.posX > 960){
 		ball.dirX = 0
 		ball.dirY = 0
-		gameoverTag.style.display = "block"
-
+		gameOver()
 	}
 
-	if(ball.hitBoxLeft <= 50/* width + posx de paddle left*/ && ball.posY + (ball.diameter / 2) >= paddleLeft.hitBoxStart && ball.posY <= paddleLeft.hitBoxEnd){
+	if(ball.hitBoxLeft <= 50 && ball.hitBoxLeft >= 40/* width + posx de paddle left*/ && ball.posY + (ball.diameter / 2) >= paddleLeft.hitBoxStart && ball.posY <= paddleLeft.hitBoxEnd){
 	ball.dirX = 1
 	ballSpeedY = Math.floor((Math.random() * 10) + 1)
+	ballSpeedX = 10 - ballSpeedY + 2
 
 	}
 	if(ball.posX <  5){
 		ball.dirX = 0
 		ball.dirY = 0
-		gameoverTag.style.display = "block"
+		gameOver()
 	}
 	if(ball.posY > 960)
 		ball.dirY = -1
@@ -153,5 +180,6 @@ document.addEventListener("keyup", event => {
 		paddleRight.dir2 = false;
 });
 
+faceOff()
 movePaddles()
 moveBall()
