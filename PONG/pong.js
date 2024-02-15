@@ -7,6 +7,8 @@ let paddleLeftTag = document.getElementById("paddleLeft")
 let paddleRightTag = document.getElementById("paddleRight")
 let ballTag = document.getElementById("ball")
 let gameoverTag = document.getElementById("gameover")
+let newGameYes = document.getElementById("newGameYes")
+let newGameNo = document.getElementById("newGameNo")
 
 let gameStat = {
 	p1Name: "",
@@ -16,11 +18,11 @@ let gameStat = {
 }
 
 let ball = {
-	posX : 500,
-	posY : 500,
+	posX : 480,
+	posY : 480,
 	diameter: 50,
-	dirX : 1,
-	dirY : 1,
+	dirX : 0,
+	dirY : 0,
 	hitBoxLeft: 0,
 	hitBoxRight: 0,
 	hitBoxTop: 0,
@@ -43,9 +45,6 @@ let paddleRight = {
 	hitBoxStart : 0,
 	hitBoxEnd : 0,
 }
-function gameOver(){
-	gameoverTag.style.display = "block"
-}
 
 function faceOff(){
 	let randnb = Math.random()
@@ -64,26 +63,23 @@ function faceOff(){
 
 function hitBoxesUpdate(){
 	ball.hitBoxLeft = ball.posX
-	console.log("left :" + ball.hitBoxLeft)
+	// console.log("left :" + ball.hitBoxLeft)
 	ball.hitBoxTop = ball.posY
-	console.log("top :" + ball.hitBoxTop)
+	// console.log("top :" + ball.hitBoxTop)
 	ball.hitBoxBottom = ball.posX + (ball.diameter)
-	console.log("Bottom :" + ball.hitBoxBottom)
+	// console.log("Bottom :" + ball.hitBoxBottom)
 	ball.hitBoxRight = ball.posY + (ball.diameter)
-	console.log("Right :" + ball.hitBoxRight)
-
+	// console.log("Right :" + ball.hitBoxRight)
 	paddleLeft.hitBoxStart = paddleLeft.pos
-	console.log("Left start :" + paddleLeft.hitBoxStart)
+	// console.log("Left start :" + paddleLeft.hitBoxStart)
 	paddleLeft.hitBoxEnd = paddleLeft.pos + paddleLeft.height
-	console.log("left end :" + paddleLeft.hitBoxEnd)
-
+	// console.log("left end :" + paddleLeft.hitBoxEnd)
 	paddleRight.hitBoxStart = paddleRight.pos
-	console.log("Right start :" + paddleRight.hitBoxStart)
+	// console.log("Right start :" + paddleRight.hitBoxStart)
 	paddleRight.hitBoxEnd = paddleRight.pos + paddleLeft.height// avoir const paddle size
-	console.log("right end :" + paddleRight.hitBoxEnd)
+	// console.log("right end :" + paddleRight.hitBoxEnd)
 
 }
-
 
 function randAngle(){
 	return Math.random();
@@ -111,7 +107,7 @@ function moveBall(){
 	if(ball.posX > 960){
 		ball.dirX = 0
 		ball.dirY = 0
-		gameOver()
+		gameoverTag.style.display = "block"
 	}
 
 	if(ball.hitBoxLeft <= 50 && ball.hitBoxLeft >= 40/* width + posx de paddle left*/ && ball.posY + (ball.diameter / 2) >= paddleLeft.hitBoxStart && ball.posY <= paddleLeft.hitBoxEnd){
@@ -123,7 +119,7 @@ function moveBall(){
 	if(ball.posX <  5){
 		ball.dirX = 0
 		ball.dirY = 0
-		gameOver()
+		gameoverTag.style.display = "block"
 	}
 	if(ball.posY > 960)
 		ball.dirY = -1
@@ -170,6 +166,7 @@ document.addEventListener("keydown", event => {
 });
 
 document.addEventListener("keyup", event => {
+	event.preventDefault()
 	if(event.key === "w")
 		paddleLeft.dir1 = false;
 	if(event.key === "s")
@@ -179,6 +176,22 @@ document.addEventListener("keyup", event => {
 	if(event.key === "ArrowDown")
 		paddleRight.dir2 = false;
 });
+
+newGameYes.addEventListener("click", () =>{
+		console.log("yes")
+		gameoverTag.style.display = "none"
+		faceOff()
+		paddleLeft.pos = paddleStartPosition
+		paddleRight.pos = paddleStartPosition
+		ball.posX = 480
+		ball.posY = 480
+
+})
+
+newGameNo.addEventListener("click", () =>{
+	console.log("no")
+	preventde
+})
 
 faceOff()
 movePaddles()
