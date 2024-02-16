@@ -185,7 +185,6 @@ newGameYes.addEventListener("click", () =>{
 		paddleRight.pos = paddleStartPosition
 		ball.posX = 480
 		ball.posY = 480
-
 })
 
 newGameNo.addEventListener("click", () =>{

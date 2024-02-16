@@ -2,9 +2,13 @@ body{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background: center url("sunset-mountain.jpg");
 }
 
 #canvasPong{
 	display: flex;
 	margin: auto;
+	background-color: rgba(29, 29, 204, 0.906);
+	border: solid 5px;
+	
 }
