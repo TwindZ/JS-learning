@@ -5,11 +5,16 @@ let control = {w : false, s: false, arrowUp : false, arrowDown : false}
 let ball = {x : 400, y : 400, r : 25, dirX : 1, dirY : -1, speedX : -4, speedY : 0}
 let gameInfo = {p1Score : 0, p2Score : 0, gameover : false}
 let shadowOffset = 5
+let countDownDone = false
 
-const canvasTag = document.getElementById("canvasPong");
-const ctx = canvasTag.getContext("2d");
+const canvasTag = document.getElementById("canvasPong")
+const ctx = canvasTag.getContext("2d")
 let p1ScoreTag = document.getElementById("p1Score")
 let p2ScoreTag = document.getElementById("p2Score")
+// let p1name = document.getElementById("player1name")
+// let p2name = document.getElementById("player2name")
+// let p1avatar = document.getElementById("player1avatar")
+// let p2avatar = document.getElementById("player2avatar")
 
 function initGame(){
 	canvasTag.width = board.width
@@ -21,22 +26,42 @@ function initGame(){
 	paddle2.y = (board.height / 2) - (paddle1.height / 2)
 	ball.x = board.width / 2
 	ball.y = board.height / 2
+	randomStartDir()
 	changeAngle()
-	if(Math.random() < 0.5)
+	if(countDownDone === false)
+			countDown()
+}
+
+function countDown(){
+	
+	let count = 1
+	let countdown = setInterval(() => {
+		ctx.clearRect(0 , 0, board.width, board.height)
+		if (count > 0) {
+			count--
+		} else {
+			countDownDone = true
+			clearInterval(countdown)
+		}
+	}, 1000)
+
+}
+
+function randomStartDir(){
+	if(Math.random() <= 0.5)
 		ball.dirX = 1
 	else
 		ball.dirX = -1
-	if(Math.random() < 0.5)
+	if(Math.random() <= 0.5)
 		ball.dirY = 1
 	else
 		ball.dirY = -1
 }
 
 function draw() {
-	
 	if (canvasTag.getContext) {
 		drawElement()
-		if(gameInfo.gameover === false){
+		if(gameInfo.gameover === false && countDownDone === true){
 			ballPhysic()
 			controlDetection()
 		}
@@ -45,7 +70,7 @@ function draw() {
 }
 
 function drawElement(){
-	ctx.clearRect(0 , 0, board.width, board.height);
+	ctx.clearRect(0 , 0, board.width, board.height)
 	drawShadow()
 	drawBall()
 	drawPaddle(paddle1)
@@ -53,26 +78,26 @@ function drawElement(){
 }
 
 function drawShadow(){
-	ctx.fillStyle = "rgb(0 0 0)";
-	ctx.beginPath();
-	ctx.arc(ball.x + shadowOffset, ball.y + shadowOffset, ball.r, 0, 2 * Math.PI);
-	ctx.fill();
-	ctx.fillRect(paddle1.x + shadowOffset, paddle1.y + shadowOffset, paddle1.width, paddle1.height);
-	ctx.fillRect(paddle2.x + shadowOffset, paddle2.y + shadowOffset, paddle2.width, paddle2.height);
+	ctx.fillStyle = "rgb(0 0 0)"
+	ctx.beginPath()
+	ctx.arc(ball.x + shadowOffset, ball.y + shadowOffset, ball.r, 0, 2 * Math.PI)
+	ctx.fill()
+	ctx.fillRect(paddle1.x + shadowOffset, paddle1.y + shadowOffset, paddle1.width, paddle1.height)
+	ctx.fillRect(paddle2.x + shadowOffset, paddle2.y + shadowOffset, paddle2.width, paddle2.height)
 	
 }
 
 function drawBall(){
 	
 	ctx.beginPath();
-	ctx.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI);
-	ctx.fillStyle = "#f50f86";
-	ctx.fill();
+	ctx.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI)
+	ctx.fillStyle = "#f50f86"
+	ctx.fill()
 }
 
 function drawPaddle(paddle){
-	ctx.fillStyle = "#b713bf";
-	ctx.fillRect(paddle.x , paddle.y, paddle.width, paddle.height);
+	ctx.fillStyle = "#b713bf"
+	ctx.fillRect(paddle.x , paddle.y, paddle.width, paddle.height)
 }
 
 function controlDetection(){
@@ -114,11 +139,11 @@ function sideRebound(){
 }
 
 function paddleColision(){
-	if(ball.x - ball.r <= paddle1.x + paddle1.width && ball.y >= paddle1.y && ball.y <= paddle1.y + paddle1.height){
+	if(ball.x - ball.r <= paddle1.x + paddle1.width && ball.x - ball.r > paddle1.x + (paddle1.width / 2)  && ball.y >= paddle1.y && ball.y <= paddle1.y + paddle1.height){
 		changeAngle()
 		ball.dirX = 1
 	}
-	if(ball.x + ball.r >= paddle2.x && ball.y >= paddle2.y && ball.y <= paddle2.y + paddle1.height){
+	if(ball.x + ball.r >= paddle2.x && ball.x + ball.r < paddle2.x + (paddle2.width / 2) && ball.y >= paddle2.y && ball.y <= paddle2.y + paddle1.height){
 		changeAngle()
 		ball.dirX = -1
 	}
@@ -128,14 +153,15 @@ function goalDetection(){
 	if(ball.x < ball.r){
 		gameInfo.p2Score++
 		p2ScoreTag.textContent = gameInfo.p2Score
-			if(gameInfo.p2Score === 10)
+		countDownDone = false
+		if(gameInfo.p2Score === 10)
 			gameInfo.gameover = true
 		initGame()
 	}
-if(ball.x > board.width - ball.r){
-	gameInfo.p1Score++
-	p1ScoreTag.textContent = gameInfo.p1Score
-
+	if(ball.x > board.width - ball.r){
+		gameInfo.p1Score++
+		p1ScoreTag.textContent = gameInfo.p1Score
+		countDownDone = false
 		if(gameInfo.p1Score === 10)
 			gameInfo.gameover = true
 		initGame()
