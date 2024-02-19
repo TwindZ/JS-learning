@@ -1,13 +1,15 @@
-let board = {width : 1000, height : 600}
+let board = {width : 1100, height : 800}
 let paddle1 = {x : 25, y : 300, width : 25, height : 200}
 let paddle2 = {width : 25, height : 200, x : 0, y : 0 }
 let control = {w : false, s: false, arrowUp : false, arrowDown : false}
 let ball = {x : 400, y : 400, r : 25, dirX : 1, dirY : -1, speedX : -4, speedY : 0}
-let gameInfo = {p1Scrore : 0, p2Score : 0, gameover : false}
+let gameInfo = {p1Score : 0, p2Score : 0, gameover : false}
 let shadowOffset = 5
 
 const canvasTag = document.getElementById("canvasPong");
 const ctx = canvasTag.getContext("2d");
+let p1ScoreTag = document.getElementById("p1Score")
+let p2ScoreTag = document.getElementById("p2Score")
 
 function initGame(){
 	canvasTag.width = board.width
@@ -19,14 +21,25 @@ function initGame(){
 	paddle2.y = (board.height / 2) - (paddle1.height / 2)
 	ball.x = board.width / 2
 	ball.y = board.height / 2
+	changeAngle()
+	if(Math.random() < 0.5)
+		ball.dirX = 1
+	else
+		ball.dirX = -1
+	if(Math.random() < 0.5)
+		ball.dirY = 1
+	else
+		ball.dirY = -1
 }
 
 function draw() {
 	
 	if (canvasTag.getContext) {
 		drawElement()
-		controlDetection()
-		ballPhysic()
+		if(gameInfo.gameover === false){
+			ballPhysic()
+			controlDetection()
+		}
 		requestAnimationFrame(draw)
 	}
 }
@@ -53,14 +66,12 @@ function drawBall(){
 	
 	ctx.beginPath();
 	ctx.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI);
-	ctx.fillStyle = "rgb(255 0 0)";
+	ctx.fillStyle = "#f50f86";
 	ctx.fill();
 }
 
 function drawPaddle(paddle){
-	ctx.fillStyle = "rgb(0 0 0)";
-	ctx.fillRect(paddle.x + shadowOffset, paddle.y + shadowOffset, paddle.width, paddle.height);
-	ctx.fillStyle = "rgb(0 200 0)";
+	ctx.fillStyle = "#b713bf";
 	ctx.fillRect(paddle.x , paddle.y, paddle.width, paddle.height);
 }
 
@@ -84,13 +95,13 @@ function ballPhysic(){
 
 function moveBall(){
 	if(ball.dirX > 0)
-	ball.x += ball.speedX
-if(ball.dirX < 0)
-ball.x -= ball.speedX
-if(ball.dirY > 0)
-ball.y += ball.speedY
-if(ball.dirY < 0)
-ball.y -= ball.speedY
+		ball.x += ball.speedX
+	if(ball.dirX < 0)
+		ball.x -= ball.speedX
+	if(ball.dirY > 0)
+		ball.y += ball.speedY
+	if(ball.dirY < 0)
+		ball.y -= ball.speedY
 }
 
 function sideRebound(){
@@ -115,12 +126,19 @@ function paddleColision(){
 
 function goalDetection(){
 	if(ball.x < ball.r){
-		changeAngle()
-		ball.dirX = 1
+		gameInfo.p2Score++
+		p2ScoreTag.textContent = gameInfo.p2Score
+			if(gameInfo.p2Score === 10)
+			gameInfo.gameover = true
+		initGame()
 	}
-	if(ball.x > board.width - ball.r){
-		changeAngle()
-		ball.dirX = -1
+if(ball.x > board.width - ball.r){
+	gameInfo.p1Score++
+	p1ScoreTag.textContent = gameInfo.p1Score
+
+		if(gameInfo.p1Score === 10)
+			gameInfo.gameover = true
+		initGame()
 	}
 }
 

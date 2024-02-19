@@ -1,8 +1,8 @@
 body{
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	background: center url("sunset-mountain.jpg");
+	margin: auto;
 }
 
 #canvasPong{
@@ -10,5 +10,50 @@ body{
 	margin: auto;
 	background-color: rgba(29, 29, 204, 0.906);
 	border: solid 5px;
-	
+	box-shadow: black 5px 5px 20px;
+}
+#game {
+	display: flex;
+	align-items: center;
+	margin: auto;
+	border: solid greenyellow ;
+}
+
+.playerInfo{
+	text-align: center;
+	width: 200px;
+	height: 275px;
+	border-radius: 20px;
+	background-color: rgba(29, 29, 204, 0.906);
+	color: white;
+	font-size: 1.3em;
+	border: solid black 5px;
+	box-shadow: black 5px 5px 20px;
+	margin: 10px;
+}
+
+#player1avatar, #player2avatar{
+	border-radius: 20px;
+	border: solid 5px;
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: -15px;
+}
+
+#player1name, #player2name{
+	font-size: 20px;
+}
+
+#p1Score, #p2Score{
+	border-radius: 20px;
+	border: solid 5px;
+	width: 75px;
+	height: 50px;
+	margin: 0 auto;
+	margin-top: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 45px;
+
 }
