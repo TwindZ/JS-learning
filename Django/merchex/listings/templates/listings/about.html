@@ -1,0 +1,12 @@
+<html>
+	<head><title>Merchex</title><head>
+	<body>
+		<h1>Affiche!</h1>
+		<p>liste des affiches :<p>
+		<ul>
+			{% for affiche in affiches %}
+			<li>{affiche.title}</li>
+			{% endfor %}
+		</ul>
+	</body>
+</html>

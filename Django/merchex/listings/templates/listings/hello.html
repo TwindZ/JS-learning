@@ -1,0 +1,24 @@
+<html>
+	<head><title>Merchex</title><head>
+	<body>
+		<h1>Hello Django !</h1>
+		<p>
+			Mes groupes préférés sont :
+			<ul>
+				{% for band in bands %}
+				<li>{{ band.name }}</li>
+				{% endfor %}
+
+			</ul>
+		<p>
+		<p>
+			J'ai 
+			{% if bands|length < 1 %}
+				pas bcp
+			{% elif bands|length < 5 %}
+				un peu
+			{% endif %}
+				de bands.
+		</p>
+	</body>
+</html>
