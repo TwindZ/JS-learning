@@ -16,6 +16,7 @@ let p2ScoreTag = document.getElementById("p2Score")
 // let p1avatar = document.getElementById("player1avatar")
 // let p2avatar = document.getElementById("player2avatar")
 
+//ok
 function initGame(){
 	canvasTag.width = board.width
 	canvasTag.height = board.height
@@ -32,6 +33,7 @@ function initGame(){
 			countDown()
 }
 
+//ok
 function countDown(){
 	
 	let count = 1
@@ -44,9 +46,9 @@ function countDown(){
 			clearInterval(countdown)
 		}
 	}, 1000)
-
 }
 
+//ok
 function randomStartDir(){
 	if(Math.random() <= 0.5)
 		ball.dirX = 1
@@ -58,16 +60,6 @@ function randomStartDir(){
 		ball.dirY = -1
 }
 
-function draw() {
-	if (canvasTag.getContext) {
-		drawElement()
-		if(gameInfo.gameover === false && countDownDone === true){
-			ballPhysic()
-			controlDetection()
-		}
-		requestAnimationFrame(draw)
-	}
-}
 
 function drawElement(){
 	ctx.clearRect(0 , 0, board.width, board.height)
@@ -111,6 +103,7 @@ function controlDetection(){
 	paddle2.y += 4
 }
 
+//ok
 function ballPhysic(){
 	moveBall()
 	sideRebound()
@@ -118,6 +111,7 @@ function ballPhysic(){
 	goalDetection()
 }
 
+//ok
 function moveBall(){
 	if(ball.dirX > 0)
 		ball.x += ball.speedX
@@ -129,6 +123,7 @@ function moveBall(){
 		ball.y -= ball.speedY
 }
 
+//ok
 function sideRebound(){
 	if(ball.y < ball.r){
 		ball.dirY = 1
@@ -138,6 +133,7 @@ function sideRebound(){
 	}
 }
 
+//ok
 function paddleColision(){
 	if(ball.x - ball.r <= paddle1.x + paddle1.width && ball.x - ball.r > paddle1.x + (paddle1.width / 2)  && ball.y >= paddle1.y && ball.y <= paddle1.y + paddle1.height){
 		changeAngle()
@@ -149,6 +145,7 @@ function paddleColision(){
 	}
 }
 
+//ok
 function goalDetection(){
 	if(ball.x < ball.r){
 		gameInfo.p2Score++
@@ -168,11 +165,13 @@ function goalDetection(){
 	}
 }
 
+//ok
 function changeAngle(){
 	ball.speedX = Math.round(Math.random() * 10 + 2)
 	ball.speedY = 10 - ball.speedX + 2
 }
 
+//ok
 document.addEventListener("keydown", event => {
 	if(event.key === "w")
 		control.w = true
@@ -184,6 +183,7 @@ document.addEventListener("keydown", event => {
 		control.arrowDown = true
 })
 
+//ok
 document.addEventListener("keyup", event => {
 	if(event.key === "w")
 		control.w = false
