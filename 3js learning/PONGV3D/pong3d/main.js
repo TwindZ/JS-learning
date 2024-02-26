@@ -9,6 +9,7 @@ let ball_att = {x : 0, y : 0, dirX : 1, dirY : -1, speedX : 1, speedY : 0}
 let gameInfo = {p1Score : 0, p2Score : 0, gameover : false}
 let countDownDone = false
 let view = 0;
+let level = 2
 
 const renderer = new THREE.WebGLRenderer()
 
@@ -30,7 +31,7 @@ const camera = new THREE.PerspectiveCamera(
 	0.1,
 	10000
 )
-camera.position.set(0, -550, 300)
+camera.position.set(0, 0, 500)
 
 const orbit = new OrbitControls(camera, renderer.domElement)
 orbit.update()
@@ -59,19 +60,51 @@ const ballplightHelper = new THREE.PointLightHelper(ballplight)
 ballplight.castShadow = true
 scene.add(ballplightHelper)
 
-const plight2 = new THREE.PointLight(0xff00dd, 20000, 1000)
-plight2.position.set(-100, 0, 100)
-scene.add(plight2)
-const plightHelper2 = new THREE.PointLightHelper(plight2)
-plight2.castShadow = true
-scene.add(plightHelper2)
 
-const plight1 = new THREE.PointLight(0x0000ff, 20000, 1000)
-plight1.position.set(100, 0, 100)
-scene.add(plight1)
-const plightHelper1 = new THREE.PointLightHelper(plight1)
-plight1.castShadow = true
-scene.add(plightHelper1)
+
+const p2light1 = new THREE.PointLight(0x0000ff, 20000, 1000)
+p2light1.position.set(75, 0, 100)
+scene.add(p2light1)
+const p2lightHelper1 = new THREE.PointLightHelper(p2light1)
+p2light1.castShadow = true
+scene.add(p2lightHelper1)
+
+const p2light2 = new THREE.PointLight(0x0000ff, 20000, 1000)
+p2light2.position.set(375, -300, -200)
+scene.add(p2light2)
+const p2lightHelper2= new THREE.PointLightHelper(p2light2)
+p2light2.castShadow = true
+scene.add(p2lightHelper2)
+
+const p2light3 = new THREE.PointLight(0x0000ff, 20000, 1000)
+p2light3.position.set(375, 300, -200)
+scene.add(p2light3)
+const p2lightHelper3 = new THREE.PointLightHelper(p2light3)
+p2light3.castShadow = true
+scene.add(p2lightHelper3)
+
+
+
+const p1light1 = new THREE.PointLight(0xff0000, 20000, 1000)
+p1light1.position.set(-75, 0, 100)
+scene.add(p1light1)
+const p1lightHelper1 = new THREE.PointLightHelper(p1light1)
+p1light1.castShadow = true
+scene.add(p1lightHelper1)
+
+const p1light2 = new THREE.PointLight(0xff0000, 20000, 1000)
+p1light2.position.set(-375, -300, -200)
+scene.add(p1light2)
+const p1lightHelper2= new THREE.PointLightHelper(p1light2)
+p1light2.castShadow = true
+scene.add(p1lightHelper2)
+
+const p1light3 = new THREE.PointLight(0xff0000, 20000, 1000)
+p1light3.position.set(-375, 300, -200)
+scene.add(p1light3)
+const p1lightHelper3= new THREE.PointLightHelper(p1light3)
+p1light3.castShadow = true
+scene.add(p1lightHelper3)
 
 const alight = new THREE.AmbientLight(0xFFFFFF, 0.01)
 // alight.position.set(0, 0, 0)
@@ -146,6 +179,7 @@ function initGame(){
 	paddle1.position.y = 0
 	paddle2.position.y = 0
 	ballplight.position.set(0, 0, board.thickness)
+	level = 0
 	randomStartDir()
 	changeAngle()
 	if(countDownDone === false)
@@ -177,9 +211,9 @@ function randomStartDir(){
 }
 
 function changeAngle(){
-	let rand = Math.round(Math.random() * 10) + 2
-	ball_att.speedX = (rand / 3) + 2
-	ball_att.speedY = ((10 - rand) / 3) + 2
+	let rand = (Math.random() * level)
+	ball_att.speedX = (rand) + 1
+	ball_att.speedY = ((level - rand)) + 1
 }
 
 function ballPhysic(){
@@ -243,10 +277,13 @@ function paddleColision(){
 	if(sphere.position.x - board.thickness <= paddle1.position.x + (board.thickness / 2) && sphere.position.y <= paddle1.position.y + paddle1_att.height / 2 && sphere.position.y >= paddle1.position.y - paddle1_att.height / 2){
 		changeAngle()
 		ball_att.dirX = 1
+		level += 0.5
+		
 	}
 	if(sphere.position.x + board.thickness >= paddle2.position.x - (board.thickness / 2) && sphere.position.y <= paddle2.position.y + paddle2_att.height / 2 && sphere.position.y >= paddle2.position.y - paddle2_att.height / 2){
 		changeAngle()
 		ball_att.dirX = -1
+		level += 0.5
 	}
 }
 
@@ -291,12 +328,12 @@ document.addEventListener("keyup", event => {
 
 function changeView(){
 	if(view === 0){
-		camera.position.set(0, -550, 300)
+		camera.position.set(0, 0, 500)
 		camera.lookAt(0, 0, 0)
 		view = 1
 	}
 	else{
-		camera.position.set(0, 0, 500)
+		camera.position.set(0, -550, 300)
 		camera.lookAt(0, 0, 0)
 		view = 0
 	}
