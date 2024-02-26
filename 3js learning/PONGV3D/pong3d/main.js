@@ -1,15 +1,16 @@
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
 
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
+let vs4 = true
 let board = {width : 350, height : 250, thickness: 10}
-let paddle1_att = {x : -board.width / 2 + (board.thickness * 2), y : 0, width : board.thickness, height : 75}
-let paddle2_att = {x : board.width / 2 - (board.thickness * 2), y : 0, width : board.thickness, height : 75}
+let paddle1_att = {x : -board.width / 2 + (board.thickness * 2), y : 0, width : board.thickness, height : 75, light_color:  0x0000ff}
+let paddle2_att = {x : board.width / 2 - (board.thickness * 2), y : 0, width : board.thickness, height : 75, light_color:  0xff0000}
 let control = {w : false, s: false, arrowUp : false, arrowDown : false}
 let ball_att = {x : 0, y : 0, dirX : 1, dirY : -1, speedX : 1, speedY : 0}
 let gameInfo = {p1Score : 0, p2Score : 0, gameover : false}
 let countDownDone = false
 let view = 0;
-let level = 2
+let level = 0
 
 const renderer = new THREE.WebGLRenderer()
 
@@ -61,22 +62,21 @@ ballplight.castShadow = true
 scene.add(ballplightHelper)
 
 
-
-const p2light1 = new THREE.PointLight(0x0000ff, 20000, 1000)
-p2light1.position.set(75, 0, 100)
+const p2light1 = new THREE.PointLight(paddle2_att.light_color, 20000, 1000)
+p2light1.position.set(board.width / 4, 0, 100)
 scene.add(p2light1)
 const p2lightHelper1 = new THREE.PointLightHelper(p2light1)
 p2light1.castShadow = true
 scene.add(p2lightHelper1)
 
-const p2light2 = new THREE.PointLight(0x0000ff, 20000, 1000)
+const p2light2 = new THREE.PointLight(paddle2_att.light_color, 20000, 1000)
 p2light2.position.set(375, -300, -200)
 scene.add(p2light2)
 const p2lightHelper2= new THREE.PointLightHelper(p2light2)
 p2light2.castShadow = true
 scene.add(p2lightHelper2)
 
-const p2light3 = new THREE.PointLight(0x0000ff, 20000, 1000)
+const p2light3 = new THREE.PointLight(paddle2_att.light_color, 20000, 1000)
 p2light3.position.set(375, 300, -200)
 scene.add(p2light3)
 const p2lightHelper3 = new THREE.PointLightHelper(p2light3)
@@ -85,30 +85,26 @@ scene.add(p2lightHelper3)
 
 
 
-const p1light1 = new THREE.PointLight(0xff0000, 20000, 1000)
-p1light1.position.set(-75, 0, 100)
+const p1light1 = new THREE.PointLight(paddle1_att.light_color, 20000, 1000)
+p1light1.position.set(board.width / -4, 0, 100)
 scene.add(p1light1)
 const p1lightHelper1 = new THREE.PointLightHelper(p1light1)
 p1light1.castShadow = true
 scene.add(p1lightHelper1)
 
-const p1light2 = new THREE.PointLight(0xff0000, 20000, 1000)
+const p1light2 = new THREE.PointLight(paddle1_att.light_color, 20000, 1000)
 p1light2.position.set(-375, -300, -200)
 scene.add(p1light2)
 const p1lightHelper2= new THREE.PointLightHelper(p1light2)
 p1light2.castShadow = true
 scene.add(p1lightHelper2)
 
-const p1light3 = new THREE.PointLight(0xff0000, 20000, 1000)
+const p1light3 = new THREE.PointLight(paddle1_att.light_color, 20000, 1000)
 p1light3.position.set(-375, 300, -200)
 scene.add(p1light3)
 const p1lightHelper3= new THREE.PointLightHelper(p1light3)
 p1light3.castShadow = true
 scene.add(p1lightHelper3)
-
-const alight = new THREE.AmbientLight(0xFFFFFF, 0.01)
-// alight.position.set(0, 0, 0)
-scene.add(alight)
 
 // const textureLoader = new THREE.TextureLoader()
 
@@ -173,6 +169,7 @@ paddle2.castShadow = true
 paddle2.receiveShadow = true
 scene.add(paddle2)
 
+
 function initGame(){
 	sphere.position.x = 0
 	sphere.position.y = 0
@@ -212,8 +209,8 @@ function randomStartDir(){
 
 function changeAngle(){
 	let rand = (Math.random() * level)
-	ball_att.speedX = (rand) + 1
-	ball_att.speedY = ((level - rand)) + 1
+	ball_att.speedX = (rand) + 2
+	ball_att.speedY = ((level - rand)) + 2
 }
 
 function ballPhysic(){
@@ -277,13 +274,13 @@ function paddleColision(){
 	if(sphere.position.x - board.thickness <= paddle1.position.x + (board.thickness / 2) && sphere.position.y <= paddle1.position.y + paddle1_att.height / 2 && sphere.position.y >= paddle1.position.y - paddle1_att.height / 2){
 		changeAngle()
 		ball_att.dirX = 1
-		level += 0.5
+		level += 0.25
 		
 	}
 	if(sphere.position.x + board.thickness >= paddle2.position.x - (board.thickness / 2) && sphere.position.y <= paddle2.position.y + paddle2_att.height / 2 && sphere.position.y >= paddle2.position.y - paddle2_att.height / 2){
 		changeAngle()
 		ball_att.dirX = -1
-		level += 0.5
+		level += 0.25
 	}
 }
 
@@ -328,12 +325,12 @@ document.addEventListener("keyup", event => {
 
 function changeView(){
 	if(view === 0){
-		camera.position.set(0, 0, 500)
+		camera.position.set(0, 0, board.height * 2)
 		camera.lookAt(0, 0, 0)
 		view = 1
 	}
 	else{
-		camera.position.set(0, -550, 300)
+		camera.position.set(0, -1 *(board.height * 2), 300)
 		camera.lookAt(0, 0, 0)
 		view = 0
 	}
@@ -346,6 +343,6 @@ function animate() {
 		controlDetection()
 		ballPhysic()
 	}
-		renderer.render(scene, camera)
+	renderer.render(scene, camera)
 }
 renderer.setAnimationLoop(animate)
